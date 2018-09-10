@@ -52,7 +52,7 @@ static struct sCS101_AppLayerParameters defaultAppLayerParameters = {
     /* .sizeOfCOT = */ 2,
     /* .originatorAddress = */ 0,
     /* .sizeOfCA = */ 2,
-    /* .sizeOfIOA = */ 3,
+    /* .sizeOfIOA = */ 2,
     /* .maxSizeOfASDU = */ 249
 };
 
@@ -192,6 +192,8 @@ createConnection(const char* hostname, int tcpPort)
     CS104_Connection self = (CS104_Connection) GLOBAL_MALLOC(sizeof(struct sCS104_Connection));
 
     if (self != NULL) {
+		self->running = false;
+		self->failure = false;
         strncpy(self->hostname, hostname, HOST_NAME_MAX);
         self->tcpPort = tcpPort;
         self->parameters = defaultAPCIParameters;
@@ -515,7 +517,7 @@ receiveMessage(CS104_Connection self, uint8_t* buffer)
 
 
 static bool
-checkConfirmTimeout(CS104_Connection self, long currentTime)
+checkConfirmTimeout(CS104_Connection self, uint64_t currentTime)
 {
     if ((currentTime - self->lastConfirmationTime) >= (uint32_t) (self->parameters.t2 * 1000))
         return true;

@@ -73,7 +73,7 @@ static struct sCS101_AppLayerParameters defaultAppLayerParameters = {
     /* .sizeOfCOT = */ 2,
     /* .originatorAddress = */ 0,
     /* .sizeOfCA = */ 2,
-    /* .sizeOfIOA = */ 3,
+    /* .sizeOfIOA = */ 2,
     /* .maxSizeOfASDU = */ 249
 };
 

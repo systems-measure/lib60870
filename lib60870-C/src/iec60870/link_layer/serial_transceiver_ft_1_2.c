@@ -143,6 +143,8 @@ SerialTransceiverFT12_readNextMessage(SerialTransceiverFT12 self, uint8_t* buffe
             }
             else {
                 DEBUG_PRINT("RECV: Timeout reading variable length frame size = %i (expected = %i)\n", readBytes, msgSize);
+				if (self->rawMessageHandler)
+					self->rawMessageHandler(self->rawMessageHandlerParameter, buffer, readBytes + 2, false);
             }
 
         }
@@ -166,6 +168,8 @@ SerialTransceiverFT12_readNextMessage(SerialTransceiverFT12 self, uint8_t* buffe
             }
             else {
                 DEBUG_PRINT("RECV: Timeout reading fixed length frame size = %i (expected = %i)\n", readBytes, msgSize);
+				if (self->rawMessageHandler)
+					self->rawMessageHandler(self->rawMessageHandlerParameter, buffer, readBytes + 1, false);
             }
 
         }
