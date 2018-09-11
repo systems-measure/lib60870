@@ -172,6 +172,9 @@ CS104_Connection_sendStopDT(CS104_Connection self);
 bool
 CS104_Connection_isTransmitBufferFull(CS104_Connection self);
 
+bool
+CS104_Connection_isRunning(CS104_Connection self);
+
 /**
  * \brief send an interrogation command
  *

@@ -789,6 +789,11 @@ handleConnection(void* parameter)
     return NULL;
 }
 
+bool
+CS104_Connection_isRunning(CS104_Connection self) {
+	return self->running;
+}
+
 void
 CS104_Connection_connectAsync(CS104_Connection self)
 {
