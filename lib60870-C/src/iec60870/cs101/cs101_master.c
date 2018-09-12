@@ -231,6 +231,10 @@ CS101_Master_run(CS101_Master self)
         LinkLayerBalanced_run(self->balancedLinkLayer);
 }
 
+bool CS101_Master_CurrentSlaveHasError(CS101_Master self) {
+	return (LinkLayerPrimaryUnbalancedCurrentSlaveGetState(self->unbalancedLinkLayer) == LL_STATE_ERROR);
+}
+
 #if (CONFIG_USE_THREADS == 1)
 static void*
 masterMainThread(void* parameter)

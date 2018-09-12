@@ -107,6 +107,7 @@ LinkLayerPrimaryUnbalanced_sendNoReply(LinkLayerPrimaryUnbalanced self, int slav
 void
 LinkLayerPrimaryUnbalanced_run(LinkLayerPrimaryUnbalanced self);
 
+LinkLayerState LinkLayerPrimaryUnbalancedCurrentSlaveGetState(LinkLayerPrimaryUnbalanced self);
 
 
 

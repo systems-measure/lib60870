@@ -96,6 +96,8 @@ CS101_Master_start(CS101_Master self);
 void
 CS101_Master_stop(CS101_Master self);
 
+bool CS101_Master_CurrentSlaveHasError(CS101_Master self);
+
 /**
  * \brief Add a new slave connection
  *

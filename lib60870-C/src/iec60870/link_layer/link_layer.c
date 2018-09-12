@@ -1702,6 +1702,10 @@ llsc_isMessageWaitingToSend(LinkLayerSlaveConnection self)
         return false;
 }
 
+LinkLayerState LinkLayerPrimaryUnbalancedCurrentSlaveGetState(LinkLayerPrimaryUnbalanced self) {
+	return self->currentSlave->state;
+}
+
 static void
 LinkLayerSlaveConnection_runStateMachine(LinkLayerSlaveConnection self)
 {
