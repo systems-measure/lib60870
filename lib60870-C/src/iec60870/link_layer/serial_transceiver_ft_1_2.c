@@ -83,10 +83,15 @@ SerialTransceiverFT12_getBaudRate(SerialTransceiverFT12 self)
 void
 SerialTransceiverFT12_sendMessage(SerialTransceiverFT12 self, uint8_t* msg, int msgSize)
 {
+    int ret;
+
     if (self->rawMessageHandler)
         self->rawMessageHandler(self->rawMessageHandlerParameter, msg, msgSize, true);
 
-    SerialPort_write(self->serialPort, msg, 0, msgSize);
+    if ((ret = SerialPort_write(self->serialPort, msg, 0, msgSize)) != msgSize) {
+        DEBUG_PRINT("Error! SerialPort_write(self->serialPort, msg, 0, msgSize) != msgSize) FILE=%s(%d)\r\n", __FILE__, __LINE__);
+        DEBUG_PRINT("SerialPort_write(...)=%d, msgSize=%d\r\n", ret, msgSize);
+    }
 }
 
 static int
