@@ -644,7 +644,6 @@ handleTimeouts(CS104_Connection self)
     }
 
     if (self->unconfirmedReceivedIMessages > 0) {
-
         if (checkConfirmTimeout(self, currentTime)) {
 
             self->lastConfirmationTime = currentTime;
@@ -668,7 +667,7 @@ handleTimeouts(CS104_Connection self)
     Semaphore_wait(self->sentASDUsLock);
 #endif
     if (self->oldestSentASDU != -1) {
-        if ((currentTime - self->sentASDUs[self->oldestSentASDU].sentTime) >= (uint64_t) (self->parameters.t1 * 1000)) {
+        if ((int32_t)(currentTime - self->sentASDUs[self->oldestSentASDU].sentTime) >= (self->parameters.t1 * 1000)) {
             DEBUG_PRINT("I message timeout\n");
             retVal = false;
         }
